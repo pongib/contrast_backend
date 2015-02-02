@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+  </head>
+  <body bgcolor="#FFF5EF">
+    <%-
+        stackChartHelper.getStackChart({
+          data: data,
+          width: width,
+          height: height,
+        	containerId: 'stack'
+      })
+    %>
+  </body>
+</html>
