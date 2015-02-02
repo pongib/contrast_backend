@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Angular.Easy</title>
+    <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+    // <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular-route.min.js"></script>
+    // <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+    <script src="angular.min.js"></script>
+    <script src="angular-route.min.js"></script>
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="AngularScript.js"></script>
+    <script src="test.js"></script>
+  </head>
+
+
+  <body ng-app="adminApp">
+    <div ng-view></div>
+  </body>
+
+  <!-- <body ng-controller="CountryCtrl">
+    search:<input ng-model="search" type="text" /> <br>
+    reverse:  {{reverse}} <br>
+    sortField:  {{sortField}}
+    <table border="1px">
+      <tr>
+        <th><a href="#" ng-click="sortField = 'name'; reverse=!reverse">Country</a></th>
+        <th><a href="#" ng-click="sortField = 'population'; reverse=!reverse">Population</a></th>
+        <th>flag</th>
+        <th>Capital</th>
+        <th><a href="http://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)">GDP</a></th>
+      </tr>
+      <tr ng-repeat="country in countries  | filter:search | orderBy:sortField:reverse">
+        <td>{{country.name}}</td>
+        <td>{{country.population | number}}</td>
+        <td><img ng-src="{{country.flagURL}}" width="100"/></td>
+        <td>{{country.capital}}</td>
+        <td>{{country.gdp | currency:'X'}}</td>
+      </tr>
+    </table>
+  </body> -->
+</html>

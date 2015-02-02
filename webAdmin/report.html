@@ -1,0 +1,28 @@
+<h1>REPORT</h1>
+<a href="#/suggest"><button>Suggest</button></a>
+<button ng-click="logout()">Logout</button><br>
+<table border="1px">
+	<tr>
+		<th>id</th>
+		<th>personid</th>
+		<th>Name</th>
+		<th>Type 1</th>
+		<th>Type 2</th>
+		<th>Type 3</th>
+		<th>OverAll</th>
+		<th>Delete</th>
+	</tr>
+	<tr ng-repeat="prop in report">
+		<th>{{prop.id}}</th>
+		<th>{{prop.personid}}</th>
+		<th>{{prop.Name}}</th>
+		<th>{{prop.Type1}}</th>
+		<th>{{prop.Type2}}</th>
+		<th>{{prop.Type3}}</th>
+		<th>{{prop.OverAll}}</th>
+		<th><button ng-click="delete(prop.personid, prop)">Delete</button></th>
+	</tr>	
+</table>
+	personid : {{personid}}<br>
+	status: {{status}} remove: {{removeStatus}} <br>
+	index: {{index}} prop: {{prop}}

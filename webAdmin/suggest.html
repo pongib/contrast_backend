@@ -1,0 +1,23 @@
+<h1>SUGGEST</h1>
+<a href="#/report"><button>Report</button></a>
+<a href="" ng-click="logout()"><button>Logout</button></a><br>
+<table  class="table table-hover">
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Category</th>
+		<th>Amount</th>
+		<th>Accept</th>
+	</tr>
+	<tr ng-repeat="prop in suggest">
+		<td>{{prop.id | number}}</td>
+		<td>{{prop.name}}</td>
+		<td>{{prop.category}}</td>
+		<td>{{prop.amount}}</td> 
+		<td><button ng-click="accept(prop.id, prop.name, prop.category, prop)">OK</button></td>
+	</tr>	
+</table>
+	name : {{name}}  category : {{category}} <br>
+	status: {{status}} remove: {{removeStatus}} <br>
+	index: {{index}} prop: {{prop}}<br>
+	result: {{result}}

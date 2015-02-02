@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html ng-app="countryApp">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Angular.easy</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular-route.min.js"></script>
+    <script>
+      var countryApp = angular.module('countryApp', ['ngRoute']);
+      
+      countryApp.config(function($routeProvider) {
+        $routeProvider.
+          when('/admin/suggest', {
+            templateUrl: 'countryList.html',
+            controller: 'CountryListCtrl'
+          }).
+          when('/:countryName', {
+            templateUrl: 'nameParam.html',
+            controller: 'CountryDetailCtrl'
+          }).
+          otherwise({
+            redirectTo: '/'
+          });
+      });
+
+      countryApp.factory('countries', function($http){
+        var cacheData;
+        function getData(callback){
+          if(cacheData){
+            return callback(cacheData);
+          }else {
+            $http.get('countries.json').success(function(data){
+              cacheData = data;
+              callback(cacheData);
+            });
+          }
+        }
+        return {
+          list: getData,
+          find: function(name, callback){
+            getData(function(data){
+              var country = data.filter(function(entry){
+                return entry.name === name;
+              })[0];
+              callback(country);
+            });
+          }
+        };
+      });
+
+      countryApp.controller('CountryListCtrl', function($scope, $http, countries){
+        countries.list(function(countries){
+          $scope.countries = countries;
+        });
+      });
+
+      countryApp.controller('CountryDetailCtrl', function($scope, $routeParams, $http, countries){
+        countries.find($routeParams.countryName, function(data){
+          $scope.country = data;
+        });
+        // $scope.name = $routeParams.countryName;
+        // $http.get('countries.json').success(function(data){
+        //   var x = 0;
+        //   $scope.country = data.filter(function(entry, index){
+        //     return entry.name === $scope.name;
+        //   })[0];
+        //   console.log($scope.country); 
+        // });
+      });
+
+
+    </script>
+  </head>
+
+
+  <body>
+    <div ng-view></div>
+  </body>
+
+  <!-- <body ng-controller="CountryCtrl">
+    search:<input ng-model="search" type="text" /> <br>
+    reverse:  {{reverse}} <br>
+    sortField:  {{sortField}}
+    <table border="1px">
+      <tr>
+        <th><a href="#" ng-click="sortField = 'name'; reverse=!reverse">Country</a></th>
+        <th><a href="#" ng-click="sortField = 'population'; reverse=!reverse">Population</a></th>
+        <th>flag</th>
+        <th>Capital</th>
+        <th><a href="http://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)">GDP</a></th>
+      </tr>
+      <tr ng-repeat="country in countries  | filter:search | orderBy:sortField:reverse">
+        <td>{{country.name}}</td>
+        <td>{{country.population | number}}</td>
+        <td><img ng-src="{{country.flagURL}}" width="100"/></td>
+        <td>{{country.capital}}</td>
+        <td>{{country.gdp | currency:'X'}}</td>
+      </tr>
+    </table>
+  </body> -->
+</html>
